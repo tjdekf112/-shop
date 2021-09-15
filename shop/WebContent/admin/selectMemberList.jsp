@@ -52,6 +52,7 @@
 		<thead>
 			<tr>
 				<th>memberNo</th>
+				<th>memberId</th>
 				<th>memberLevel</th>
 				<th>memberName</th>
 				<th>memberAge</th>
@@ -66,6 +67,7 @@
 					%>
 					<tr>
 						<td><%= m.getMemberNo() %></td>
+						<td><%= m.getMemberId() %></td>
 						<td>
 							<%=m.getMemberLevel() %>
 							<%
@@ -101,12 +103,22 @@
 		<%
 	}
 	
-	int totalCount = memberDao.totalList();
-	int lastPage = totalCount / rowPerPage; // 마지막 페이지 수를 계산
-	if(totalCount%rowPerPage != 0){
-		lastPage+=1;
+
+	int lastPage;
+	// 검색한 값이 없다면 
+	if(searchMemberId.equals("") == true) { 
+		int totalCount = memberDao.totalList();
+		lastPage = totalCount/rowPerPage;
+	} 
+	//검색한 값이 있다면
+	else { 
+		int totalCount = memberDao.totalSelectList(searchMemberId);
+		lastPage = totalCount/rowPerPage;
 	}
+
+	
 	System.out.println(lastPage + "<--lastPage");
+	
 	if(currentPage < lastPage){
 %>
 	<a href="./selectMemberList.jsp?currentPage=<%=currentPage+1%>&searchMemberId=<%=searchMemberId%>">다음</a>
