@@ -11,13 +11,90 @@ import vo.Member;
 
 public class MemberDao {
 	
-	//[관리자] 회원목록출력
-	public ArrayList<Member> selectMemberListAllByPage(int beginRow, int rowPerPage){
-		ArrayList<Member> list = new ArrayList<Member>();
-		/*
-		 * Select member_no, member_id,member_level, member_name, member_age,member_gender, update_date, create_date FROM member WHERE ORDER BY create_date DESC Limit ?, ?;
-		 */
+	
+
+	//[관리자] 검색
+	public ArrayList<Member> selectMemberListAllBySearchMemberId(int beginRow, int rowPerPage, String searchMemberId) throws ClassNotFoundException, SQLException{
+		System.out.println(beginRow + "<-- beginRow");
+		System.out.println(rowPerPage + "<-- rowPerPage");
 		
+		ArrayList<Member> list = new ArrayList<Member>();
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		System.out.println(conn + "<-- conn");
+		String sql = "SELECT member_no memberNo, member_id memberId, member_level memberLevel, member_name memberName, member_age memberAge, member_gender memberGender, update_date updateDate, create_date createDate FROM member WHERE member_id like ? ORDER BY create_date DESC LIMIT ?,?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, "%"+searchMemberId+"%");	//like를 쓰기 때문에 %로 감싸주어야 함.
+		stmt.setInt(2, beginRow);
+		stmt.setInt(3, rowPerPage);
+		System.out.println(stmt + "<-- stmt");
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			Member m = new Member();
+			m.setMemberNo(rs.getInt("memberNo"));
+			m.setMemberLevel(rs.getInt("memberLevel"));
+			m.setMemberName(rs.getString("memberName"));
+			m.setMemberAge(rs.getInt("memberAge"));
+			m.setMemberGender(rs.getString("memberGender"));
+			m.setUpdateDate(rs.getString("updateDate"));
+			m.setCreatedate(rs.getString("createdate"));
+			list.add(m);
+		}
+
+		return list;
+	}
+	
+	
+	//[관리자] 마지막페이지 출력
+	public	int totalList() throws ClassNotFoundException, SQLException {
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+
+		System.out.println(conn + "<-- conn");
+		
+		int totalCount = 0;
+		
+		PreparedStatement stmt = conn.prepareStatement("select count(*) from member");
+
+		System.out.println(stmt + "<--stmt");
+		
+		ResultSet rs = stmt.executeQuery(); // 참조값
+		if(rs.next()){
+			totalCount = rs.getInt("count(*)");	
+		}
+		return totalCount;
+	}
+	
+	//[관리자] 회원목록출력
+	public ArrayList<Member> selectMemberListAllByPage(int beginRow, int rowPerPage) throws ClassNotFoundException, SQLException{
+		System.out.println(beginRow + "<-- beginRow");
+		System.out.println(rowPerPage + "<-- rowPerPage");
+		
+		ArrayList<Member> list = new ArrayList<Member>();
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		System.out.println(conn + "<-- conn");
+		String sql = "SELECT member_no memberNo, member_id memberId, member_level memberLevel, member_name memberName, member_age memberAge, member_gender memberGender, update_date updateDate, create_date createDate FROM member ORDER BY create_date DESC LIMIT ?,?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, beginRow);
+		stmt.setInt(2, rowPerPage);
+		System.out.println(stmt + "<-- stmt");
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			Member m = new Member();
+			m.setMemberNo(rs.getInt("memberNo"));
+			m.setMemberLevel(rs.getInt("memberLevel"));
+			m.setMemberName(rs.getString("memberName"));
+			m.setMemberAge(rs.getInt("memberAge"));
+			m.setMemberGender(rs.getString("memberGender"));
+			m.setUpdateDate(rs.getString("updateDate"));
+			m.setCreatedate(rs.getString("createdate"));
+			list.add(m);
+		}
+
 		return list;
 	}
 	
