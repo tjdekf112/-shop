@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<li><a href="">admin menu1</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">회원 관리</a></li>
 		<li><a href="">admin menu2</a></li>
 		<li><a href="">admin menu3</a></li>
 		<li><a href="">admin menu4</a></li>

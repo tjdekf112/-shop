@@ -4,10 +4,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import commons.DBUtil;
 import vo.Member;
 
 public class MemberDao {
+	
+	//[관리자] 회원목록출력
+	public ArrayList<Member> selectMemberListAllByPage(int beginRow, int rowPerPage){
+		ArrayList<Member> list = new ArrayList<Member>();
+		/*
+		 * Select member_no, member_id,member_level, member_name, member_age,member_gender, update_date, create_date FROM member WHERE ORDER BY create_date DESC Limit ?, ?;
+		 */
+		
+		return list;
+	}
+	
+	
 	
 	//회원가입
 	public int insertMember(Member member) throws ClassNotFoundException, SQLException {
@@ -41,7 +55,7 @@ public class MemberDao {
 		return rs;
 		
 	}
-	// 로그인
+	// [회원]로그인
 	public Member login(Member member) throws ClassNotFoundException, SQLException {
 		// 받아온 값 디버깅
 		System.out.println(member.getMemberId() + "<--memberId");

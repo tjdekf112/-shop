@@ -7,6 +7,7 @@
 		// 로그인이 안되었거나 관리자레벨이 1보다 작다면 인덱스로 go
 		if(loginMember == null || loginMember.getMemberLevel() < 1){
 			response.sendRedirect(request.getContextPath() + "/index.jsp");	
+			return;
 		}
 %>
 <!DOCTYPE html>
@@ -25,3 +26,6 @@
 	<div><%=loginMember.getMemberId() %>님 반갑습니다.</div>
 </body>
 </html>
+
+
+

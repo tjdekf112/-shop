@@ -53,13 +53,13 @@
 			<!--  관리자 페이지로 가는 링크 -->
 			<%
 			//관리자만 들어올 수 있게하는 방어코드
-			if (loginMember.getMemberLevel() > 0) {
-			%>
-			<div>
-				<a href="<%=request.getContextPath()%>/admin/adminIndex.jsp">관리자 페이지</a>
-			</div>
-			<%
-			}
+				if (loginMember.getMemberLevel() > 0) {
+				%>
+				<div>
+					<a href="<%=request.getContextPath()%>/admin/adminIndex.jsp">관리자 페이지</a>
+				</div>
+				<%
+				}
 			%>
 
 			<%
