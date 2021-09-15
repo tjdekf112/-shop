@@ -13,6 +13,13 @@
 <%
 	//글자 깨짐 방지
 	request.setCharacterEncoding("utf-8");
+
+	if(session.getAttribute("loginMember")!=null){	//로그인이 된 상태(로그인멤버값이 null인 상태)
+	//브라우저에게 다른곳을 '요청'(위치로 보내는 것(go)이 아닌(보내주는 것이 아니라 간 것) 해당 위치로 내보내는(rollback) 것(쫒아내는 것,되돌리는 것))
+	response.sendRedirect(request.getContextPath()+"/index.jsp");	//로그인이 된 상태니 인덱스로
+	return;	//if문 이후 코드가 작동하지 않도록 값 리턴
+	}
+
 	//회원가입을 하기위해 입력한 정보들 받아오기 변수에 받기
 	String memberId = request.getParameter("memberId");
 	String memberPw = request.getParameter("memberPw");

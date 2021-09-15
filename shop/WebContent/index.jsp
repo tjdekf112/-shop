@@ -9,8 +9,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+
 <div class="container">
 	<table class="table table-dark">
+	<div>
+		<!--  /로 시작하면 절대 주소 -->
+		<jsp:include page="/partial/mainMenu.jsp"></jsp:include>
+	</div>
 	<h1>메인페이지</h1>
 	<%
 	// 아이디를 입력해서 로그인 했다면..
@@ -19,6 +24,7 @@
 	<!--  로그인 전 -->
 	
 	<div>
+	
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<div><a class="btn-secondary" href="<%=request.getContextPath() %>/loginForm.jsp">로그인</a></div>
 	</nav>

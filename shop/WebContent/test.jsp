@@ -9,7 +9,7 @@
 <body>
 	<div>
 		<!--  /로 시작하면 절대 주소 -->
-		<jsp:include page="//partial/submenu.jsp"></jsp:include>
+		<jsp:include page="/partial/mainMenu.jsp"></jsp:include>
 	</div>
 		<h1>test page</h1>
 		
