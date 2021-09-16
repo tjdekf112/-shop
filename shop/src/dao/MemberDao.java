@@ -11,6 +11,65 @@ import vo.Member;
 
 public class MemberDao {
 	
+	//no, 수정된 level -> 수정
+	public void updateMemberLevelBydamin(Member member) throws ClassNotFoundException, SQLException {
+		//DB실행
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		System.out.println(conn + "<--conn");
+		//입력한No조건에 해당하는 정보를 level로 바꾸는 쿼리
+		String sql = "UPDATE member SET member_level = ? WHERE member_no=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, member.getMemberLevel());
+		stmt.setInt(2, member.getMemberNo());
+		//디버깅
+		System.out.println(stmt + "<-- stmt");
+		stmt.executeQuery();
+		
+		return;
+	}
+	
+	
+	//비밀번호 수정, no와 수정된Pw 필요
+	public void updateMemberPwByadmin(Member member) throws ClassNotFoundException, SQLException {
+		//DB실행
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		//디버깅
+		System.out.println(conn + "<--conn");
+		// password를 이용하여 비밀번호 암호화
+		String sql = "UPDATE member SET member_pw = password(?) WHERE member_no=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberPw());
+		stmt.setInt(2, member.getMemberNo());
+		//디버깅
+		System.out.println(stmt + "<-- stmt");
+		stmt.executeQuery();
+		
+		return;
+		
+	}
+	
+	//no -> 삭제
+	public void deleteMemberByKey(int memberNo) throws ClassNotFoundException, SQLException {
+		//DB실행
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		//디버깅
+		System.out.println(conn + "<--conn");
+		//특정번호에 해당하는 정보를 삭제하는 sql
+		String sql = "DELETE FROM member where member_no =?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, memberNo);
+		stmt.executeUpdate();
+		//디버깅
+		System.out.println(stmt + "<-- stmt");
+		return ;
+	}
+	
+	
+	
 	//검색 후 마지막페이지
 	public int totalSelectList(String searchMemberId) throws ClassNotFoundException, SQLException {
 		//DB실행

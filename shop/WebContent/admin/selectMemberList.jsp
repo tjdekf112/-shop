@@ -59,6 +59,9 @@
 				<th>memberGender</th>
 				<th>updateDate</th>
 				<th>createDate</th>
+				<th>회원등급수정</th>
+				<th>비밀번호수정</th>
+				<th>회원탈퇴</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -69,7 +72,7 @@
 						<td><%= m.getMemberNo() %></td>
 						<td><%= m.getMemberId() %></td>
 						<td>
-							<%=m.getMemberLevel() %>
+							
 							<%
 								if(m.getMemberLevel() != 1){
 							%>
@@ -81,13 +84,25 @@
 							<%
 								}
 							%>
-						
+							(<%=m.getMemberLevel() %>)
 						</td>
 						<td><%= m.getMemberName() %></td>
 						<td><%= m.getMemberAge() %></td>
 						<td><%= m.getMemberGender() %></td>
 						<td><%= m.getUpdateDate() %></td>
 						<td><%= m.getCreatedate() %></td>
+						<td>
+						<!--  특정회원의 등급을 수정  -->
+							<a href = "<%=request.getContextPath()%>/admin/updateMemberLevelForm.jsp?memberNo=<%=m.getMemberNo()%>">회원등급수정</a>
+						</td>
+						<td>
+							<!-- 특정회원의 비밀번호를 수정 -->
+							<a href = "<%=request.getContextPath()%>/admin/updateMemberForm.jsp?memberNo=<%=m.getMemberNo()%>">비밀번호수정</a>
+						</td>
+						<td>
+							<!--  특정회원을 강제탈퇴 -->
+							<a href = "<%=request.getContextPath()%>/admin/deleteMemberForm.jsp?memberNo=<%=m.getMemberNo()%>">강제탈퇴</a>
+						</td>
 					</tr>
 					<%
 				}

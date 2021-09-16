@@ -8,9 +8,11 @@
 </head>
 <body>
 		<li><a href="<%=request.getContextPath()%>/admin/selectMemberList.jsp">회원 관리</a></li>
-		<li><a href="">admin menu2</a></li>
-		<li><a href="">admin menu3</a></li>
-		<li><a href="">admin menu4</a></li>
-		<li><a href="">admin menu5</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/">[전자책 카테고리 관리]</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/">[전자책 관리]</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/">[주문 관리]</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/">[상품명 관리]</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/">[공지게시판 관리]</a></li>
+		<li><a href="<%=request.getContextPath()%>/admin/">[QnA게시간 관리]</a></li>
 </body>
 </html>

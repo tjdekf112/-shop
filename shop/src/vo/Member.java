@@ -10,6 +10,8 @@ public class Member {
 	private String	memberGender;
 	private String updateDate;
 	private String createdate;
+	private String memberPwNew;
+
 	public int getMemberNo() {
 		return memberNo;
 	}
