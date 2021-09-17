@@ -20,6 +20,9 @@
 	return;	//if문 이후 코드가 작동하지 않도록 값 리턴
 	}
 
+	if(request.getParameter("memberId").equals("") || request.getParameter("memberPw").equals("") || request.getParameter("memberName").equals("") || request.getParameter("memberAge").equals("") || request.getParameter("memberGender").equals("")){
+		response.sendRedirect(request.getContextPath()+"/index.jsp");
+	}
 	//회원가입을 하기위해 입력한 정보들 받아오기 변수에 받기
 	String memberId = request.getParameter("memberId");
 	String memberPw = request.getParameter("memberPw");

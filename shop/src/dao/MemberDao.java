@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,32 @@ import commons.DBUtil;
 import vo.Member;
 
 public class MemberDao {
+	
+	//[회원] 멤버 아이디 중복 검사
+	public String selectMemberId(String memberIdCheck) throws ClassNotFoundException, SQLException {
+		
+		System.out.println(memberIdCheck + "<--memberIdCheck");
+		
+		String memberId = null;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		String sql = "SELECT member_id memberId FROM member WHERE member_id=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, memberIdCheck);
+		ResultSet rs = stmt.executeQuery();
+		System.out.println(rs + "<-- rs");
+		
+		if(rs.next()) {
+			memberId = rs.getString("memberId");
+		}
+		
+		rs.close();
+		stmt.close();
+		
+		return memberId;	//null -> 사용 가능한 ID, null이 아니면 이미 사용중인 ID
+		
+	}
+	
 	
 	//no, 수정된 level -> 수정
 	public void updateMemberLevelBydamin(Member member) throws ClassNotFoundException, SQLException {

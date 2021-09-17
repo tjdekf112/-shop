@@ -43,14 +43,19 @@
 <meta charset="UTF-8">
 <title>회원 목록</title>
 </head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <body>
+<div class="container">
 	<div>
 	<jsp:include page="/partial/adminMenu.jsp"></jsp:include>
 	</div>
 	<h1>회원 목록</h1>
 	<table border="1">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<thead>
 			<tr>
+			
 				<th>memberNo</th>
 				<th>memberId</th>
 				<th>memberLevel</th>
@@ -102,13 +107,17 @@
 						<td>
 							<!--  특정회원을 강제탈퇴 -->
 							<a href = "<%=request.getContextPath()%>/admin/deleteMemberForm.jsp?memberNo=<%=m.getMemberNo()%>">강제탈퇴</a>
+							
 						</td>
 					</tr>
 					<%
 				}
 			%>
-		</tbody>
+			
+		</tbody >
+		
 	</table>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark"></nav>
 <%
 	// ISSUE : 페이지 잘되었는데// 검색한 후 페이징하면 안된다 -> issue 해결
 	// 이전으로 가는 if문 ex) 내가 2페이지라면 1페이지로 가게함

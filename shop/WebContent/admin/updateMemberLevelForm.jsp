@@ -7,7 +7,7 @@
 <title>updateMemberLevelForm</title>
 </head>
 <body>
-	<form method = "post" action = "./updateMemberLevelAction.jsp">
+	<form method = "post" action = "./updateMemberLevelAction.jsp?">
 	<h1>level 수정</h1>
 	<div>No</div>
 	<input type = "text" name = "memberNo">

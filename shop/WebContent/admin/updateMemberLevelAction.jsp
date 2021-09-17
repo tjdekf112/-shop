@@ -17,6 +17,7 @@
 	return;	//if문 이후 코드가 작동하지 않도록 값 리턴
 	}
 	
+	
 		MemberDao memberDao = new MemberDao();
 		Member member = new Member();
 		Member loginMember = (Member)session.getAttribute("loginMember");
